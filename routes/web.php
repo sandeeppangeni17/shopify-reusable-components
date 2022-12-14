@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware(['verify.shopify'])->name('home');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->middleware(['verify.shopify'])->name('home');
+
+Route::get('/',[ShopController::class, 'index'])->middleware(['verify.shopify'])->name('home');
+Route::any('/updatedata',[ShopController::class, 'savetometafield'])->middleware(['verify.shopify']);
