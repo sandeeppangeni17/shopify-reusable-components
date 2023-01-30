@@ -14,6 +14,7 @@ use View;
 use DB;
 use Mail;
 use Log;
+use \Firebase\JWT\JWT;
 
 class ShopController extends Controller
 {
@@ -87,5 +88,10 @@ class ShopController extends Controller
         {
             echo json_encode($e);
         }
+    }
+
+    public function generate_jwt($headers, $payload, $secret = 'secret-key') {
+        $jwt = JWT::encode($payload, $secret, 'HS256');
+        return $jwt;
     }
 }
